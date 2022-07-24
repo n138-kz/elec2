@@ -53,9 +53,15 @@
       $(function(){
         $('#btn_siken_syuryo').click(function(){
           console.log('confirm');
-          if (window.confirm('試験時間が残っていますが終了しますか？')) {
-
-          }
+          // if (window.confirm('試験時間が残っていますが終了しますか？')) {          }
+          
+          $.get('./' + shiken_nendo_path + '/' + 'ans.txt')
+          .done(function(data){
+            console.log(data);
+          })
+          .fail(function(data){
+            console.log(data);
+          })
         });
         $('#box_siken_kaishi').change(function(){
           console.debug($(this));
@@ -81,7 +87,7 @@
             return false;
           }
           
-          $(this).disable = True;
+          $(this).disabled = True;
           
           shiken_kaishi = new Date();
           sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.Shiken_kaishi', shiken_kaishi );
