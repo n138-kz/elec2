@@ -77,6 +77,7 @@
             $('div#mondai table tbody tr:last-child th:last-child').append('<img />');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').addClass('mondai');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('alt', '');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('onerror', 'this.remove()');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('oncontextmenu', 'return false;');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('ondragstart', 'return false;');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './202204a/202204a' + ("00" + i).substr(-2) + '.png');
