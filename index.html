@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=800">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
+    <script type="text/javascript" src="./grecaptcha.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      grecaptcha_init('homepage');
+    </script>
+    <style media="screen">
+      .grecaptcha-badge{
+        opacity: 1;
+      }
+    </style>
+    <style media="screen">
+      body {
+        margin: 0;
+        background-color: azure;
+      }
+      body>div {
+        max-width: 800px;
+        width: 95%;
+        box-shadow: 0px 5px 10px gray;
+        margin: 0 auto;
+        background-color: aliceblue;
+        padding: 0 10px;
+      }
+      div img.mondai {
+        width: 600px;
+        min-height: 100px;
+      }
+      div input.kaitou {
+        width: 30px;
+        text-align: center;
+      }
+      div#mondai td.kaitou:hover {
+        background-color: aqua;
+      }
+    </style>
+    <script type="text/javascript">
+      $(function(){
+        $(document).on('click','td.kaitou', function(){
+          console.debug($(this));
+          console.debug($(this)[0].childNodes[0]);
+          console.debug($(this)[0].childNodes[0].checked);
+          $(this)[0].childNodes[0].checked = true;
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(function(){
+        $('#btn_siken_syuryo').click(function(){
+          console.log('confirm');
+          if (window.confirm('試験時間が残っていますが終了しますか？')) {
+
+          }
+        });
+        $('#box_siken_kaishi').change(function(){
+          console.debug($(this));
+          console.debug($(this).val());
+          shiken_nendo = $(this).val();
+          console.debug(shiken_nendo);
+          if (! window.confirm(shiken_nendo + 'の試験問題を選択しました。\n試験開始しますか？') ){
+          }
+          
+          kaitou_listId = ['a','b','c','d'];
+
+          $('div#mondai table tbody').empty();
+          for (var i = 1; i <= 50; i++) {
+            $('div#mondai table tbody').append('<tr />');
+            $('div#mondai table tbody tr:last-child').append('<th />');
+            $('div#mondai table tbody tr:last-child th:last-child').text( ("00" + i).substr(-2) );
+            $('div#mondai table tbody tr:last-child').append('<th />');
+            $('div#mondai table tbody tr:last-child th:last-child').addClass('mondai');
+            $('div#mondai table tbody tr:last-child th:last-child').append('<img />');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').addClass('mondai');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('alt', '');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('oncontextmenu', 'return false;');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('ondragstart', 'return false;');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './202204a/202204a' + ("00" + i).substr(-2) + '.png');
+            for (var j = 0; j < kaitou_listId.length; j++) {
+              $('div#mondai table tbody tr:last-child').append('<td />');
+              $('div#mondai table tbody tr:last-child td:last-child').addClass('kaitou');
+              $('div#mondai table tbody tr:last-child td:last-child').append('<input />');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').addClass('kaitou');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('name', '202204a' + ("00" + i).substr(-2));
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('value', kaitou_listId[i]);
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
+            }
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <div id="form-ctrl">
+        <table>
+          <tbody>
+            <tr>
+              <th>出題年度</th>
+              <td>
+                <select id="box_siken_kaishi">
+                  <option value="" selected></option>
+                  <option value="2021-04-am">令和3年度春期</option>
+                  <option value="2021-10-am">令和3年度秋期</option>
+                  <option value="2022-04-am">令和4年度春期午前</option>
+                  <option value="2022-04-pm">令和4年度春期午後</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>試験終了</th>
+              <td><input type="button" id="btn_siken_syuryo" value="試験終了"></td>
+              <td>xx:xx:xx (xxxx/xx/xx xx:xx:xx 予定)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="mondai">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>問</th>
+              <th>イ</th>
+              <th>ロ</th>
+              <th>ハ</th>
+              <th>ニ</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
