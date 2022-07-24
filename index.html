@@ -62,8 +62,27 @@
           console.debug($(this).val());
           shiken_nendo = $(this).val();
           console.debug(shiken_nendo);
-          if (! window.confirm(shiken_nendo + 'の試験問題を選択しました。\n試験開始しますか？') ){
+          
+          $('div#mondai table tbody').empty();
+          
+          if (shiken_nendo.length == 0){
+            // no selected
+            return false;
           }
+          console.log(shiken_nendo.split('-'));
+          shiken_nendo_path = shiken_nendo.split('-')[0] + shiken_nendo.split('-')[1] + ( shiken_nendo.split('-')[2] ).substring(0,1);
+          console.log(shiken_nendo_path);
+          
+          shiken_confirm = window.confirm(shiken_nendo + 'の試験問題を選択しました。\n試験開始しますか？');
+          console.log(shiken_confirm);
+          
+          if (! shiken_confirm ){
+            // cansel exam
+            return false;
+          }
+          
+          shiken_kaishi = new Date();
+          sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.Shiken_kaishi', shiken_kaishi );
           
           kaitou_listId = ['a','b','c','d'];
 
@@ -80,14 +99,14 @@
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('onerror', 'this.remove()');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('oncontextmenu', 'return false;');
             $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('ondragstart', 'return false;');
-            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './202204a/202204a' + ("00" + i).substr(-2) + '.png');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './' + shiken_nendo_path + '/' + shiken_nendo_path + '' + ("00" + i).substr(-2) + '.png');
             for (var j = 0; j < kaitou_listId.length; j++) {
               $('div#mondai table tbody tr:last-child').append('<td />');
               $('div#mondai table tbody tr:last-child td:last-child').addClass('kaitou');
               $('div#mondai table tbody tr:last-child td:last-child').append('<input />');
               $('div#mondai table tbody tr:last-child td:last-child input:last-child').addClass('kaitou');
               $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
-              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('name', '202204a' + ("00" + i).substr(-2));
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('name', shiken_nendo_path + ("00" + i).substr(-2));
               $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('value', kaitou_listId[i]);
               $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
             }
@@ -106,10 +125,10 @@
               <td>
                 <select id="box_siken_kaishi">
                   <option value="" selected></option>
-                  <option value="2021-04-am">令和3年度春期</option>
+                  <option value="2021-05-am">令和3年度春期</option>
                   <option value="2021-10-am">令和3年度秋期</option>
-                  <option value="2022-04-am">令和4年度春期午前</option>
-                  <option value="2022-04-pm">令和4年度春期午後</option>
+                  <option value="2022-05-am">令和4年度春期午前</option>
+                  <option value="2022-05-pm">令和4年度春期午後</option>
                 </select>
               </td>
             </tr>
