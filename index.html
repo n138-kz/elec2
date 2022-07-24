@@ -81,7 +81,7 @@
             return false;
           }
           
-          $(this).disable = True;
+	  $('select').attr('disabled', true);
           
           shiken_kaishi = new Date();
           sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.Shiken_kaishi', shiken_kaishi );
