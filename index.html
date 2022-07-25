@@ -54,7 +54,7 @@
         $('#btn_siken_syuryo').click(function(){
           console.log('confirm');
           // if (window.confirm('試験時間が残っていますが終了しますか？')) {          }
-          
+
           $.get('./' + shiken_nendo_path + '/' + 'ans.txt')
           .done(function(data){
             console.log(data);
@@ -64,34 +64,38 @@
           })
         });
         $('#box_siken_kaishi').change(function(){
+          shiken_nendo = $(this);
           console.debug($(this));
           console.debug($(this).val());
-          shiken_nendo = $(this).val();
-          console.debug(shiken_nendo);
-          
+          console.debug($(this).text());
+          console.debug($(this).is(':selected'));
+          shiken_nendo_val = shiken_nendo.val();
+          console.debug(shiken_nendo_val);
+
           $('div#mondai table tbody').empty();
-          
+
           if (shiken_nendo.length == 0){
             // no selected
             return false;
           }
-          console.log(shiken_nendo.split('-'));
-          shiken_nendo_path = shiken_nendo.split('-')[0] + shiken_nendo.split('-')[1] + ( shiken_nendo.split('-')[2] ).substring(0,1);
+          console.log(shiken_nendo_val.split('-'));
+          shiken_nendo_path = shiken_nendo_val.split('-')[0] + shiken_nendo_val.split('-')[1] + ( shiken_nendo_val.split('-')[2] ).substring(0,1);
           console.log(shiken_nendo_path);
-          
-          shiken_confirm = window.confirm(shiken_nendo + 'の試験問題を選択しました。\n試験開始しますか？');
+
+          shiken_confirm = window.confirm(shiken_nendo_val + 'の試験問題を選択しました。\n試験開始しますか？');
           console.log(shiken_confirm);
-          
+
           if (! shiken_confirm ){
             // cansel exam
+            shiken_nendo
             return false;
           }
-          
+
           $('select').attr('disabled', true);
-          
+
           shiken_kaishi = new Date();
           sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.Shiken_kaishi', shiken_kaishi );
-          
+
           kaitou_listId = ['a','b','c','d'];
 
           $('div#mondai table tbody').empty();
@@ -138,6 +142,13 @@
                   <option value="2022-05-am">令和4年度春期午前</option>
                   <option value="2022-05-pm">令和4年度春期午後</option>
                 </select>
+              </td>
+            </tr>
+            <tr>
+              <th>採点方式</th>
+              <td>
+                <label><input type="radio" name="chk_shiken_houshiki" value=""> 即時</label>
+                <label><input type="radio" name="chk_shiken_houshiki" value="" checked> 終了時</label>
               </td>
             </tr>
             <tr>
