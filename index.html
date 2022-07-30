@@ -122,6 +122,44 @@
               $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
             }
           }
+
+          $('div#mondai table tbody').append('<tr />');
+          $('div#mondai table tbody tr:last-child').append('<th />');
+          $('div#mondai table tbody tr:last-child th:last-child').text( ("00" + i).substr(-2) );
+          $('div#mondai table tbody tr:last-child').append('<th />');
+          $('div#mondai table tbody tr:last-child th:last-child').addClass('mondai');
+          $('div#mondai table tbody tr:last-child th:last-child').append('<img />');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').addClass('mondai');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('alt', '');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('onerror', 'this.remove()');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('oncontextmenu', 'return false;');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('ondragstart', 'return false;');
+          $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './' + shiken_nendo_path + '/' + shiken_nendo_path + '' + 'b1' + '.png');
+
+          for (var i = 31; i <= 50; i++) {
+            $('div#mondai table tbody').append('<tr />');
+            $('div#mondai table tbody tr:last-child').append('<th />');
+            $('div#mondai table tbody tr:last-child th:last-child').text( ("00" + i).substr(-2) );
+            $('div#mondai table tbody tr:last-child').append('<th />');
+            $('div#mondai table tbody tr:last-child th:last-child').addClass('mondai');
+            $('div#mondai table tbody tr:last-child th:last-child').append('<img />');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').addClass('mondai');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('alt', '');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('onerror', 'this.remove()');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('oncontextmenu', 'return false;');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('ondragstart', 'return false;');
+            $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('src', './' + shiken_nendo_path + '/' + shiken_nendo_path + '' + ("00" + i).substr(-2) + '.png');
+            for (var j = 0; j < kaitou_listId.length; j++) {
+              $('div#mondai table tbody tr:last-child').append('<td />');
+              $('div#mondai table tbody tr:last-child td:last-child').addClass('kaitou');
+              $('div#mondai table tbody tr:last-child td:last-child').append('<input />');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').addClass('kaitou');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('name', shiken_nendo_path + ("00" + i).substr(-2));
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('value', kaitou_listId[i]);
+              $('div#mondai table tbody tr:last-child td:last-child input:last-child').attr('type', 'radio');
+            }
+          }
         });
       });
     </script>
