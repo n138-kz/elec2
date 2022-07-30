@@ -60,12 +60,12 @@
             data = data.replace(/\r/g, '');
             data = data.split(/\n/);
             for (var i = 0; i < data.length; i++) {
-              if (i>50) {
+              if (i>=50) {
                 break;
               }
 
               console.log('[name='+shiken_nendo_path+']');
-              console.log('[name='+shiken_nendo_path+i+']');
+              console.log('[name='+shiken_nendo_path+(i+1)+']');
               console.log(data[i]);
             }
           })
