@@ -125,9 +125,9 @@
 
           $('div#mondai table tbody').append('<tr />');
           $('div#mondai table tbody tr:last-child').append('<th />');
-          $('div#mondai table tbody tr:last-child th:last-child').text( ("00" + i).substr(-2) );
           $('div#mondai table tbody tr:last-child').append('<th />');
           $('div#mondai table tbody tr:last-child th:last-child').addClass('mondai');
+          $('div#mondai table tbody tr:last-child th:last-child').attr('colspan', '5');
           $('div#mondai table tbody tr:last-child th:last-child').append('<img />');
           $('div#mondai table tbody tr:last-child th:last-child img:last-child').addClass('mondai');
           $('div#mondai table tbody tr:last-child th:last-child img:last-child').attr('alt', '');
