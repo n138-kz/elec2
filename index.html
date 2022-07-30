@@ -57,6 +57,7 @@
 
           $.get('./' + shiken_nendo_path + '/' + 'ans.txt')
           .done(function(data){
+            data = data.split(/\n/);
             console.log(data);
           })
           .fail(function(data){
