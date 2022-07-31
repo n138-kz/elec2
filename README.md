@@ -1,3 +1,6 @@
+> *Note*
+> This is WIP
+
 # What is this
 - 電気工事士二種筆記試験勉強用ウェブベース対策ツール
 
